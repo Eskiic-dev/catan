@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catan Live Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🎲 Catan Live Dashboard</h1>
+      <p>Live-Standings, Aktionen und automatische Punkteberechnung</p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Live Standing</h2>
+        <table id="standingsTable">
+          <thead>
+            <tr>
+              <th>Platz</th>
+              <th>Spieler</th>
+              <th>Gesamtpunkte</th>
+              <th>Siedlung</th>
+              <th>Stadt</th>
+              <th>Sonderkarten</th>
+              <th>Längste Straße</th>
+              <th>Größte Rittermacht</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Spielverlauf (Live)</h2>
+          <button id="clearLogBtn" class="danger">Log löschen</button>
+        </div>
+        <ul id="eventLog" class="log"></ul>
+      </section>
+
+      <section class="card admin">
+        <h2>Admin Panel</h2>
+
+        <form id="addPlayerForm" class="group">
+          <h3>Spieler hinzufügen</h3>
+          <label>
+            Name
+            <input id="playerName" type="text" placeholder="z. B. Alex" required />
+          </label>
+          <button type="submit">Spieler anlegen</button>
+        </form>
+
+        <form id="updatePointsForm" class="group">
+          <h3>Punkte/Aktionen ändern</h3>
+          <label>
+            Spieler
+            <select id="playerSelect" required></select>
+          </label>
+
+          <div class="grid">
+            <label>
+              Siedlungen (+1 je)
+              <input id="settlements" type="number" min="0" value="0" required />
+            </label>
+            <label>
+              Städte (+2 je)
+              <input id="cities" type="number" min="0" value="0" required />
+            </label>
+            <label>
+              Sonderkartenpunkte (+1 je)
+              <input id="victoryCards" type="number" min="0" value="0" required />
+            </label>
+          </div>
+
+          <div class="checks">
+            <label><input id="longestRoad" type="checkbox" /> Längste Straße (+2)</label>
+            <label><input id="largestArmy" type="checkbox" /> Größte Rittermacht (+2)</label>
+          </div>
+
+          <label>
+            Aktion/Notiz (optional)
+            <input id="note" type="text" placeholder="z. B. 2 Straßen gebaut" />
+          </label>
+
+          <button type="submit">Änderung speichern</button>
+        </form>
+
+        <button id="resetAllBtn" class="danger">Komplettes Spiel zurücksetzen</button>
+      </section>
+    </main>
+
+    <template id="logItemTemplate">
+      <li>
+        <span class="time"></span>
+        <span class="message"></span>
+      </li>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
